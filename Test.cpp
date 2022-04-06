@@ -7,17 +7,20 @@ using namespace zich;
 TEST_CASE("Bad Input"){
     
     vector <double> v1 = {1,1,1,1,2,2,2,2,3,3,3,3};
+    vector <double> v2 = {1,1,2,2};
 
     Matrix m1(v1,3,4);
     Matrix m2(v1,4,3);
+    Matrix m3(v2,2,2);
     bool ans;
     //Matrices not the same size
     CHECK_THROWS((m1 + m2));
     CHECK_THROWS((m1 += m2));
     CHECK_THROWS((m1 - m2));
     CHECK_THROWS((m1 -= m2));
-    CHECK_THROWS((m1 * m2));
-    CHECK_THROWS((m2 * m1));
+
+    CHECK_THROWS((m1 * m3));
+    CHECK_THROWS((m3 * m3));
 
     //Invalid comparison
     CHECK_THROWS(ans = (m1 > m2));
